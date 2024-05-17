@@ -4,6 +4,8 @@ use crate::{
     macros::get_todo,
 };
 
+use chrono::prelude::*;
+
 pub fn command(command: List, global_options: GlobalOptions) {
     let todo = get_todo!(global_options);
     let completed = todo.items.iter().filter(|i| i.completed).count();
@@ -57,7 +59,16 @@ pub fn command(command: List, global_options: GlobalOptions) {
             },
         );
         let tags = colorize(&item.tags.join(", "), AnsiEscape::Magenta);
+        let date_added = colorize(&Utc.timestamp_nanos(item.date_added).to_rfc2822(), AnsiEscape::Black);
 
-        println!("{item_index}. {item_content} {tags}")
+        let mut string = format!("{item_index}. {item_content}");
+
+        if command.show_timestamps {
+            string.push_str(&format!(" ({date_added})"));
+        }
+
+        string.push_str(&format!(" {tags}"));
+
+        println!("{string}");
     }
 }

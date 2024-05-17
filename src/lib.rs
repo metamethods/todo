@@ -57,6 +57,7 @@ pub struct TodoItem {
     pub content: String,
     pub tags: Vec<String>,
     pub completed: bool,
+    pub date_added: i64
 }
 
 #[derive(Debug, Serialize, Deserialize)]

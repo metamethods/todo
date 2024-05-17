@@ -23,6 +23,7 @@ fn main() {
                 filter: false,
                 tags: vec![],
                 completed: false,
+                show_timestamps: false
             },
             global_options,
         ),

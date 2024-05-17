@@ -71,6 +71,9 @@ pub struct List {
     pub filter: bool,
 
     #[clap(long, short)]
+    pub show_timestamps: bool,
+
+    #[clap(long, short)]
     pub completed: bool,
 
     #[clap(long, short, num_args = 1.., value_delimiter = ',')]
