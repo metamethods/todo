@@ -121,7 +121,9 @@ pub fn get_todo(global_options: &GlobalOptions) -> Result<Todo, String> {
                     }
                     Err(_) => Err("Unable to parse file".to_string()),
                 },
-                Err(_) => Err(format!("Cannot find todo file {TODO_FILE_NAME}")),
+                Err(_) => Err(format!(
+                    "Cannot find todo file {TODO_FILE_NAME}. Did you run `todo init`?"
+                )),
             }
         }
         Err(_) => Err("Unable to get the current directory".to_string()),
